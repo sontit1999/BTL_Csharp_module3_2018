@@ -1,7 +1,6 @@
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\bin\Debug\module3.exe.config
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\bin\Debug\module3.exe
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\bin\Debug\module3.pdb
-G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.csprojAssemblyReference.cache
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.Form1.resources
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.Properties.Resources.resources
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.csproj.GenerateResource.cache
@@ -9,3 +8,4 @@ G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.cspro
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.exe
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.pdb
 G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.BookingConfirmForm.resources
+G:\Project C#\TranVanSon_2017603271_module3_2018\module3\obj\Debug\module3.csprojAssemblyReference.cache

@@ -58,18 +58,18 @@
             this.txtPassportNumber = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.txtPassportCountry = new System.Windows.Forms.ComboBox();
+            this.cbPassportCountry = new System.Windows.Forms.ComboBox();
             this.txtBirthday = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.txtPhonenumber = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.btnAddpassenger = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPassenger = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPassenger)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -357,13 +357,13 @@
             this.label27.TabIndex = 29;
             this.label27.Text = "Passport country";
             // 
-            // txtPassportCountry
+            // cbPassportCountry
             // 
-            this.txtPassportCountry.FormattingEnabled = true;
-            this.txtPassportCountry.Location = new System.Drawing.Point(405, 243);
-            this.txtPassportCountry.Name = "txtPassportCountry";
-            this.txtPassportCountry.Size = new System.Drawing.Size(112, 21);
-            this.txtPassportCountry.TabIndex = 30;
+            this.cbPassportCountry.FormattingEnabled = true;
+            this.cbPassportCountry.Location = new System.Drawing.Point(405, 243);
+            this.cbPassportCountry.Name = "cbPassportCountry";
+            this.cbPassportCountry.Size = new System.Drawing.Size(112, 21);
+            this.cbPassportCountry.TabIndex = 30;
             // 
             // txtBirthday
             // 
@@ -405,6 +405,7 @@
             this.btnAddpassenger.TabIndex = 35;
             this.btnAddpassenger.Text = "Add passenger";
             this.btnAddpassenger.UseVisualStyleBackColor = true;
+            this.btnAddpassenger.Click += new System.EventHandler(this.btnAddpassenger_Click);
             // 
             // label30
             // 
@@ -415,13 +416,13 @@
             this.label30.TabIndex = 36;
             this.label30.Text = "Passenger list";
             // 
-            // dataGridView1
+            // dgvPassenger
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(44, 322);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(708, 125);
-            this.dataGridView1.TabIndex = 37;
+            this.dgvPassenger.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPassenger.Location = new System.Drawing.Point(44, 322);
+            this.dgvPassenger.Name = "dgvPassenger";
+            this.dgvPassenger.Size = new System.Drawing.Size(708, 125);
+            this.dgvPassenger.TabIndex = 37;
             // 
             // btnBack
             // 
@@ -458,14 +459,14 @@
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvPassenger);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.btnAddpassenger);
             this.Controls.Add(this.txtPhonenumber);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.txtBirthday);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.txtPassportCountry);
+            this.Controls.Add(this.cbPassportCountry);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.txtPassportNumber);
             this.Controls.Add(this.label26);
@@ -499,7 +500,7 @@
             this.Name = "BookingConfirmForm";
             this.Text = "Booking Confirmation";
             this.Load += new System.EventHandler(this.BookingConfirmForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPassenger)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -537,14 +538,14 @@
         private System.Windows.Forms.TextBox txtPassportNumber;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox txtPassportCountry;
+        private System.Windows.Forms.ComboBox cbPassportCountry;
         private System.Windows.Forms.TextBox txtBirthday;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox txtPhonenumber;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button btnAddpassenger;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPassenger;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnRemove;

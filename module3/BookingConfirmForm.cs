@@ -1,4 +1,6 @@
-﻿using System;
+﻿using module3.BULs;
+using module3.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +14,33 @@ namespace module3
 {
     public partial class BookingConfirmForm : Form
     {
+        FlightDetailDTO flightOutbound;
+        FlightDetailDTO flightReturn;
+        FlightDetailBUL flightDetailBUL = new FlightDetailBUL();
+        List<PassengersDTO> listPassenger = new List<PassengersDTO>();
         public BookingConfirmForm()
         {
             InitializeComponent();
+           
         }
+        public BookingConfirmForm(int idScheduleOutbound,int idSchedulesReturn)
+        {
+            InitializeComponent();
+            MessageBox.Show("Booking form recive : " + idScheduleOutbound + "->" + idSchedulesReturn);
+            flightOutbound = flightDetailBUL.getFilghDetailFromIDschedule(idScheduleOutbound);
+            flightReturn = flightDetailBUL.getFilghDetailFromIDschedule(idSchedulesReturn);
 
+            lbFromOutbound.Text = flightOutbound.From;
+            lbToOutbound.Text = flightOutbound.To;
+            lbDateOutbound.Text = flightOutbound.Date;
+            lbFlightnumberOutbound.Text = flightOutbound.flightNumber.ToString();
+
+            lbFromReturn.Text = flightReturn.From;
+            lbToReturn.Text = flightReturn.To;
+            lbDateReturn.Text = flightReturn.Date;
+            lbFlightReturn.Text = flightReturn.flightNumber.ToString();
+
+        }
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -75,6 +99,26 @@ namespace module3
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddpassenger_Click(object sender, EventArgs e)
+        {
+            if(txtFirstname.Text.Equals("") || txtLastname.Text.Equals("") || txtBirthday.Text.Equals("") || txtPassportNumber.Text.Equals("") || txtPhonenumber.Text.Equals(""))
+            {
+                MessageBox.Show("Không được bỏ trống trường nào !!!");
+            }
+            else
+            {
+                string passcountry = "124";
+                PassengersDTO passengerDTO = new PassengersDTO(txtFirstname.Text, txtLastname.Text, txtBirthday.Text, txtPassportNumber.Text,passcountry, txtPhonenumber.Text);
+                listPassenger.Add(passengerDTO);
+                hienthiPassenger();
+            }
+
+        }
+        public void hienthiPassenger()
+        {
+            dgvPassenger.DataSource = listPassenger;
         }
     }
 }

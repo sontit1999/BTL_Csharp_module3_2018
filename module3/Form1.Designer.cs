@@ -30,31 +30,31 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbFrom = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbTo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbCabintype = new System.Windows.Forms.ComboBox();
             this.rbReturn = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbOneWay = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtOutbound = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtReturn = new System.Windows.Forms.TextBox();
             this.btnApply = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBoxDisplayOutbound = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.checkBoxOutbound = new System.Windows.Forms.CheckBox();
+            this.dgvOutbound = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.checkboxReturn = new System.Windows.Forms.CheckBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvReturn = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNumberPassenger = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnBook = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutbound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -76,13 +76,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "From";
             // 
-            // comboBox1
+            // cbFrom
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cbFrom.FormattingEnabled = true;
+            this.cbFrom.Location = new System.Drawing.Point(72, 42);
+            this.cbFrom.Name = "cbFrom";
+            this.cbFrom.Size = new System.Drawing.Size(121, 21);
+            this.cbFrom.TabIndex = 3;
             // 
             // label3
             // 
@@ -93,13 +93,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "To";
             // 
-            // comboBox2
+            // cbTo
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(276, 42);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 5;
+            this.cbTo.FormattingEnabled = true;
+            this.cbTo.Location = new System.Drawing.Point(276, 42);
+            this.cbTo.Name = "cbTo";
+            this.cbTo.Size = new System.Drawing.Size(121, 21);
+            this.cbTo.TabIndex = 5;
             // 
             // label4
             // 
@@ -110,13 +110,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Cabin Type";
             // 
-            // comboBox3
+            // cbCabintype
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(554, 42);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 7;
+            this.cbCabintype.FormattingEnabled = true;
+            this.cbCabintype.Location = new System.Drawing.Point(554, 42);
+            this.cbCabintype.Name = "cbCabintype";
+            this.cbCabintype.Size = new System.Drawing.Size(121, 21);
+            this.cbCabintype.TabIndex = 7;
             // 
             // rbReturn
             // 
@@ -128,18 +128,19 @@
             this.rbReturn.TabStop = true;
             this.rbReturn.Text = "Return";
             this.rbReturn.UseVisualStyleBackColor = true;
+            this.rbReturn.CheckedChanged += new System.EventHandler(this.rbReturn_CheckedChanged);
             // 
-            // radioButton2
+            // rbOneWay
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(108, 79);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(67, 17);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "One way";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.rbOneWay.AutoSize = true;
+            this.rbOneWay.Location = new System.Drawing.Point(108, 79);
+            this.rbOneWay.Name = "rbOneWay";
+            this.rbOneWay.Size = new System.Drawing.Size(67, 17);
+            this.rbOneWay.TabIndex = 9;
+            this.rbOneWay.TabStop = true;
+            this.rbOneWay.Text = "One way";
+            this.rbOneWay.UseVisualStyleBackColor = true;
+            this.rbOneWay.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label5
             // 
@@ -150,12 +151,13 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Outbound";
             // 
-            // textBox1
+            // txtOutbound
             // 
-            this.textBox1.Location = new System.Drawing.Point(276, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 20);
-            this.textBox1.TabIndex = 11;
+            this.txtOutbound.Location = new System.Drawing.Point(276, 80);
+            this.txtOutbound.Name = "txtOutbound";
+            this.txtOutbound.Size = new System.Drawing.Size(124, 20);
+            this.txtOutbound.TabIndex = 11;
+            this.txtOutbound.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label6
             // 
@@ -166,12 +168,12 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Return";
             // 
-            // textBox2
+            // txtReturn
             // 
-            this.textBox2.Location = new System.Drawing.Point(554, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 20);
-            this.textBox2.TabIndex = 13;
+            this.txtReturn.Location = new System.Drawing.Point(554, 80);
+            this.txtReturn.Name = "txtReturn";
+            this.txtReturn.Size = new System.Drawing.Size(124, 20);
+            this.txtReturn.TabIndex = 13;
             // 
             // btnApply
             // 
@@ -181,6 +183,7 @@
             this.btnApply.TabIndex = 14;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // label7
             // 
@@ -191,23 +194,25 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "Outbound flight details";
             // 
-            // checkBoxDisplayOutbound
+            // checkBoxOutbound
             // 
-            this.checkBoxDisplayOutbound.AutoSize = true;
-            this.checkBoxDisplayOutbound.Location = new System.Drawing.Point(595, 117);
-            this.checkBoxDisplayOutbound.Name = "checkBoxDisplayOutbound";
-            this.checkBoxDisplayOutbound.Size = new System.Drawing.Size(193, 17);
-            this.checkBoxDisplayOutbound.TabIndex = 16;
-            this.checkBoxDisplayOutbound.Text = " Display three days before and after";
-            this.checkBoxDisplayOutbound.UseVisualStyleBackColor = true;
+            this.checkBoxOutbound.AutoSize = true;
+            this.checkBoxOutbound.Location = new System.Drawing.Point(595, 117);
+            this.checkBoxOutbound.Name = "checkBoxOutbound";
+            this.checkBoxOutbound.Size = new System.Drawing.Size(193, 17);
+            this.checkBoxOutbound.TabIndex = 16;
+            this.checkBoxOutbound.Text = " Display three days before and after";
+            this.checkBoxOutbound.UseVisualStyleBackColor = true;
+            this.checkBoxOutbound.CheckedChanged += new System.EventHandler(this.checkBoxDisplayOutbound_CheckedChanged);
             // 
-            // dataGridView1
+            // dgvOutbound
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 146);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(756, 141);
-            this.dataGridView1.TabIndex = 17;
+            this.dgvOutbound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOutbound.Location = new System.Drawing.Point(31, 146);
+            this.dgvOutbound.Name = "dgvOutbound";
+            this.dgvOutbound.Size = new System.Drawing.Size(756, 141);
+            this.dgvOutbound.TabIndex = 17;
+            this.dgvOutbound.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOutbound_CellClick);
             // 
             // label8
             // 
@@ -227,14 +232,16 @@
             this.checkboxReturn.TabIndex = 19;
             this.checkboxReturn.Text = " Display three days before and after";
             this.checkboxReturn.UseVisualStyleBackColor = true;
+            this.checkboxReturn.CheckedChanged += new System.EventHandler(this.checkboxReturn_CheckedChanged);
             // 
-            // dataGridView2
+            // dgvReturn
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(41, 327);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(756, 141);
-            this.dataGridView2.TabIndex = 20;
+            this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReturn.Location = new System.Drawing.Point(41, 327);
+            this.dgvReturn.Name = "dgvReturn";
+            this.dgvReturn.Size = new System.Drawing.Size(756, 141);
+            this.dgvReturn.TabIndex = 20;
+            this.dgvReturn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReturn_CellClick);
             // 
             // label9
             // 
@@ -245,12 +252,12 @@
             this.label9.TabIndex = 21;
             this.label9.Text = "Confirm booking for";
             // 
-            // textBox3
+            // txtNumberPassenger
             // 
-            this.textBox3.Location = new System.Drawing.Point(242, 510);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(44, 20);
-            this.textBox3.TabIndex = 22;
+            this.txtNumberPassenger.Location = new System.Drawing.Point(242, 510);
+            this.txtNumberPassenger.Name = "txtNumberPassenger";
+            this.txtNumberPassenger.Size = new System.Drawing.Size(44, 20);
+            this.txtNumberPassenger.TabIndex = 22;
             // 
             // label10
             // 
@@ -288,33 +295,33 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnBook);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtNumberPassenger);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvReturn);
             this.Controls.Add(this.checkboxReturn);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.checkBoxDisplayOutbound);
+            this.Controls.Add(this.dgvOutbound);
+            this.Controls.Add(this.checkBoxOutbound);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtReturn);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtOutbound);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.rbOneWay);
             this.Controls.Add(this.rbReturn);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cbCabintype);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbTo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbFrom);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Search for Flight";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutbound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,26 +330,26 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFrom;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbTo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbCabintype;
         private System.Windows.Forms.RadioButton rbReturn;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbOneWay;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtOutbound;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtReturn;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox checkBoxDisplayOutbound;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.CheckBox checkBoxOutbound;
+        private System.Windows.Forms.DataGridView dgvOutbound;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkboxReturn;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvReturn;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNumberPassenger;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnBook;
         private System.Windows.Forms.Button btnExit;
