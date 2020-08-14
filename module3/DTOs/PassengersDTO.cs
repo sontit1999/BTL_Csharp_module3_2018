@@ -14,6 +14,7 @@ namespace module3.DTOs
         public string PassportNumber { get; set; }
         public string PassporCountry { get; set; }
         public string Phone { get; set; }
+        public int IDCountry { get; set; }
         public PassengersDTO()
         {
 

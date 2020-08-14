@@ -117,6 +117,8 @@
             this.cbCabintype.Name = "cbCabintype";
             this.cbCabintype.Size = new System.Drawing.Size(121, 21);
             this.cbCabintype.TabIndex = 7;
+            this.cbCabintype.SelectedIndexChanged += new System.EventHandler(this.cbCabintype_SelectedIndexChanged);
+            this.cbCabintype.SelectedValueChanged += new System.EventHandler(this.cbCabintype_SelectedValueChanged);
             // 
             // rbReturn
             // 
@@ -291,6 +293,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 542);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnBook);

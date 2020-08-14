@@ -3,51 +3,51 @@ using module3.Server;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace module3.DALs
 {
-    class CabinTypesDAL
+    class CountryDAL
     {
         SqlConnection con;
-        public CabinTypesDAL()
+        public CountryDAL()
         {
             con = UtilsConnect.getConnection();
         }
-        public List<CabinTypesDTO> getCabinType()
+        public List<CountryDTO> getCountry()
         {
             con.Open();
-            List<CabinTypesDTO> list = new List<CabinTypesDTO>();
+            List<CountryDTO> list = new List<CountryDTO>();
 
-            string sql = "select * from CabinTypes";
+            string sql = "select * from Countries";
             SqlCommand cmd = new SqlCommand(sql, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                CabinTypesDTO cabinTypes = new CabinTypesDTO(Convert.ToInt32(dr["ID"]), dr["Name"].ToString());
-                list.Add(cabinTypes);
+                CountryDTO country = new CountryDTO(Convert.ToInt32(dr["ID"]), dr["Name"].ToString());
+                list.Add(country);
             }
             con.Close();
             return list;
         }
-        public string getNameCabinTypeFromID(int id)
+        public string getNameCountryFromID(int idCountry)
         {
             string name = "";
             con.Open();
-            
+            List<CountryDTO> list = new List<CountryDTO>();
 
-            string sql = "select * from CabinTypes where ID = @id";
+            string sql = "select * from Countries where ID = @id";
             SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("id", idCountry);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 name = dr["Name"].ToString();
                 break;
-
             }
             con.Close();
             return name;

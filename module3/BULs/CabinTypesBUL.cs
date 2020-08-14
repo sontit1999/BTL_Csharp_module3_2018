@@ -15,5 +15,10 @@ namespace module3.BULs
         {
             return cabinTypesDAL.getCabinType();
         }
+        public string getNameCabinTypeFromID(int id)
+        {
+           
+            return cabinTypesDAL.getNameCabinTypeFromID(id);
+        }
     }
 }
