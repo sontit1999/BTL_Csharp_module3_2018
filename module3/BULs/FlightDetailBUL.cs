@@ -5,33 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace module3.BULs
 {
     class FlightDetailBUL
     {
         FlightDetailDAL flightDetailDAL = new FlightDetailDAL();
-        public List<FlightDetailDTO> getFlight(int idAirportFrom, int idAirportTo, string date, bool isReturn)
+        public List<FlightDetailDTO> getFlight(int idAirportFrom, int idAirportTo, string date)
         {
-            List<FlightDetailDTO> listtong = flightDetailDAL.getFlight(idAirportFrom, idAirportTo, date, isReturn);
-            List<FlightDetailDTO> listnoi =   getTuyenNoi(idAirportFrom, idAirportTo, date);
-            foreach(FlightDetailDTO i in listnoi)
-            {
-                listtong.Add(i);
-            }
+            List<FlightDetailDTO> listtong = flightDetailDAL.getFlight(idAirportFrom, idAirportTo, date);   
             return listtong;
-            //return listtong;
         }
-        public List<FlightDetailDTO> getFlightThreeDays(int idAirportFrom, int idAirportTo, string date, bool isReturn)
+        public List<FlightDetailDTO> getFlightThreeDays(int idAirportFrom, int idAirportTo, string date)
         {
-            List<FlightDetailDTO> listtong = flightDetailDAL.getFlightThreeDays(idAirportFrom, idAirportTo, date, isReturn);
-            List<FlightDetailDTO> listnoi = getTuyenNoiTHreeDay(idAirportFrom, idAirportTo, date);
-            foreach (FlightDetailDTO i in listnoi)
-            {
-                listtong.Add(i);
-            }
+            List<FlightDetailDTO> listtong = flightDetailDAL.getFlightThreeDays(idAirportFrom, idAirportTo, date);
             return listtong;
-           // return flightDetailDAL.getFlightThreeDays(idAirportFrom, idAirportTo, date,isReturn);
+           
+        }
+        // get all schedule
+        public List<FlightDetailDTO> getAllFlight()
+        {
+           
+            return flightDetailDAL.getAllFlight();
         }
         public int getPassengerFromSchedule(int idSchedule)
         {
@@ -100,6 +96,69 @@ namespace module3.BULs
         {
             return flightDetailDAL.getPriceFromIDschedule(idschedule);
 
+        }
+        public void displayFlightToDGV(List<FlightDetailDTO> list,DataGridView dgv,int idCbinprice)
+        {
+            CaculatePriceFlightByCabintype(list, idCbinprice);
+            dgv.Rows.Clear();
+     
+            dgv.ColumnCount = 7;
+
+            int i = 0;
+            dgv.Rows.Add();
+            dgv.Rows[i].Cells[0].Value = "From";
+            dgv.Rows[i].Cells[1].Value = "To";
+            dgv.Rows[i].Cells[2].Value = "Date";
+            dgv.Rows[i].Cells[3].Value = "Time";
+            dgv.Rows[i].Cells[4].Value = "Flight number";
+            dgv.Rows[i].Cells[5].Value = "Cabin Price";
+            dgv.Rows[i].Cells[6].Value = "Number of stop";
+            i++;
+            foreach (FlightDetailDTO item in list)
+            {
+                dgv.Rows.Add();
+                dgv.Rows[i].Cells[0].Value = item.From;
+                dgv.Rows[i].Cells[1].Value = item.To;
+                dgv.Rows[i].Cells[2].Value = item.Date;
+                dgv.Rows[i].Cells[3].Value = item.Time;
+                dgv.Rows[i].Cells[4].Value = item.flightNumber;
+                dgv.Rows[i].Cells[5].Value = item.cabinPrice;
+                dgv.Rows[i].Cells[6].Value = item.numberOfStop;
+                i++;
+            }
+        }
+        public void CaculatePriceFlightByCabintype(List<FlightDetailDTO> list , int idCabintype)
+        {
+            if(idCabintype == 1)
+            {
+                // gía không đổi
+                
+
+            }else if (idCabintype == 2)
+            {
+                // đắt hơn 35% economy
+                foreach (FlightDetailDTO item in list)
+                {
+                    double giabandau = double.Parse(item.cabinPrice);
+                    giabandau = giabandau * 1.35;
+                    item.cabinPrice = giabandau.ToString();
+                }
+            }
+            else if(idCabintype == 3)
+            {
+                // đắt hơn 30 % bussiness
+                foreach (FlightDetailDTO item in list)
+                {
+                    double giabandau = double.Parse(item.cabinPrice);
+                    giabandau = giabandau * 1.35*1.3;
+                    item.cabinPrice = giabandau.ToString();
+                }
+            }
+        }
+        // function get số ghế theo loại cabin đã đặt trong chuyến bay x
+        public int getNumberCabintypeSeatbookInschedule(int idSchedule, int idCabintype)
+        {   
+            return flightDetailDAL.getNumberCabintypeSeatbookInschedule(idSchedule,idCabintype);
         }
     }
 }

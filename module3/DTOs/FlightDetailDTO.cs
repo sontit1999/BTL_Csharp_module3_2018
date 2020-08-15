@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace module3.DTOs
 {
-    class FlightDetailDTO
+    public class FlightDetailDTO
     {
         public string ID { get; set; }
         public string From { get; set; }

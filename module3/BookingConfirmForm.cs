@@ -15,88 +15,78 @@ namespace module3
     public partial class BookingConfirmForm : Form
     {
         public string totalMoney { get; set; }
+        public int idCabintype { get; set; }
         FlightDetailDTO flightOutbound;
-        FlightDetailDTO flightReturn;
-        string idScheduleOutbound;
-        string idSchedulesReturn;
+        FlightDetailDTO flightReturn;  
         FlightDetailBUL flightDetailBUL = new FlightDetailBUL();
         CabinTypesBUL CabinTypesBUL = new CabinTypesBUL();
         CountryBUL countryBUL = new CountryBUL();
         List<PassengersDTO> listPassenger ;
-        int idCabintype =-1;
-        int indexPassengerRemove = -1;
+        int numberPassengers;
+        int indexPassengerRemove;
+       
+      
         public BookingConfirmForm()
         {
             InitializeComponent();
             listPassenger = new List<PassengersDTO>();
         }
-        
-        public BookingConfirmForm(string idScheduleOutbound,string idSchedulesReturn,int idCabin,string from,string to,string flightnumberOutbound,string dateOutbound, string flightnumberReturn, string dateReturn)
+        public BookingConfirmForm(FlightDetailDTO flyOutbound, FlightDetailDTO flyReturn,int numberPassenger,int IDcabin)
         {
-            
-
-
             InitializeComponent();
+            listPassenger = new List<PassengersDTO>();
 
-            this.idScheduleOutbound = idScheduleOutbound;
-            this.idSchedulesReturn = idSchedulesReturn;
-
+            this.flightOutbound = flyOutbound;
+            this.flightReturn = flyReturn;
+            this.numberPassengers = numberPassenger;
+            this.idCabintype = IDcabin;
             // set label
 
-            lbFromOutbound.Text = from;
-            lbToOutbound.Text = to;
-            lbFlightnumberOutbound.Text = flightnumberOutbound;
-            lbDateOutbound.Text = dateOutbound;
+            // get name cabin 
+            string nameCabin = CabinTypesBUL.getNameCabinTypeFromID(idCabintype);
 
-
-         //   MessageBox.Show("idcabind recive : " + idCabin);
-            idCabintype = idCabin;
-            string nameCbintype = CabinTypesBUL.getNameCabinTypeFromID(idCabintype);
-            lbCabintypeOutbound.Text = nameCbintype;
-            lbCabintypeReturn.Text = nameCbintype;
-          //  lbCabintypeReturn.Text = nameCbintype;
-           
-            listPassenger = new List<PassengersDTO>();
-       //     MessageBox.Show("id schecdule outbound: " + idScheduleOutbound);
-            
-            if (idSchedulesReturn != null)
+            if (flyReturn == null)
             {
-               // flightReturn = flightDetailBUL.getFilghDetailFromIDschedule(Convert.ToInt32(idSchedulesReturn));
-                lbFromReturn.Text = to;
-                lbToReturn.Text = from;
-                lbDateReturn.Text = dateReturn;
-                lbFlightReturn.Text = flightnumberReturn;
-            }
-            else
-            {
-               // MessageBox.Show("ko có vé khứ hồi");
-                // ẩn view
-                lbDateReturn.Hide();
-                lbFlightReturn.Hide();
+                // ẩn schedule return
                 lbFromReturn.Hide();
                 lbToReturn.Hide();
                 lbCabintypeReturn.Hide();
+                lbDateReturn.Hide();
+                lbFlightReturn.Hide();
                 label12.Hide();
                 label13.Hide();
-                label15.Hide();
                 label17.Hide();
                 label19.Hide();
                 label21.Hide();
             }
+            else
+            {
+                lbFromReturn.Text = flightReturn.From;
+                lbToReturn.Text = flightReturn.To;
+                lbCabintypeReturn.Text = nameCabin ;
+                lbDateReturn.Text = flightReturn.Date;
+                lbFlightReturn.Text = flightReturn.flightNumber;
+            }
            
-            // flightOutbound = flightDetailBUL.getFilghDetailFromIDschedule(Convert.ToInt32(idScheduleOutbound));
-           
-           
-            /*
-           
-            //MessageBox.Show("Giá tiền outbound :" + flightOutbound.getRealPrice(idCabintype));
-            lbCabintypeOutbound.Text = nameCbintype;
+           //set labe
             lbFromOutbound.Text = flightOutbound.From;
             lbToOutbound.Text = flightOutbound.To;
             lbDateOutbound.Text = flightOutbound.Date;
-            lbFlightnumberOutbound.Text = flightOutbound.flightNumber.ToString();
-             */
+            lbCabintypeOutbound.Text = nameCabin;
+            lbFlightnumberOutbound.Text = flightOutbound.flightNumber;
 
+
+            // tính tổng tiền
+            if (flightReturn != null)
+            {
+                double tongtien = (double.Parse(flightOutbound.cabinPrice) + double.Parse(flightReturn.cabinPrice)) * numberPassengers;
+                totalMoney = tongtien.ToString();
+            }
+            else
+            {
+                double tongtien = (double.Parse(flightOutbound.cabinPrice)) * numberPassengers;
+                totalMoney = tongtien.ToString();
+            }
 
         }
         private void label3_Click(object sender, EventArgs e)
@@ -114,6 +104,13 @@ namespace module3
             cbPassportCountry.DataSource = countryBUL.getCountry();
             cbPassportCountry.DisplayMember = "Name";
             cbPassportCountry.ValueMember = "ID";
+
+            // custom datetime picker
+            dateTimePickerBirthday.CustomFormat = "dd/MM/yyyy";
+
+            // set default time
+            dateTimePickerBirthday.Value = new DateTime(1999, 10, 06);
+            
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -163,23 +160,42 @@ namespace module3
 
         private void btnAddpassenger_Click(object sender, EventArgs e)
         {
-            if(txtFirstname.Text.Equals("") || txtLastname.Text.Equals("") || txtBirthday.Text.Equals("") || txtPassportNumber.Text.Equals("") || txtPhonenumber.Text.Equals(""))
+            if (listPassenger.Count >= numberPassengers)
             {
-                MessageBox.Show("Không được bỏ trống trường nào !!!");
+                MessageBox.Show("Đã thêm đủ passenger!");
             }
             else
-            {  
-               
-                int idpasscountry = Convert.ToInt32(cbPassportCountry.SelectedValue);
-                string name = countryBUL.getNameCountryFromID(idpasscountry);
-                PassengersDTO passengerDTO = new PassengersDTO(txtFirstname.Text, txtLastname.Text, txtBirthday.Text, txtPassportNumber.Text,cbPassportCountry.Text, txtPhonenumber.Text);
-                passengerDTO.IDCountry = idpasscountry;
-                listPassenger.Add(passengerDTO);            
-                MessageBox.Show("Đã thêm passenger");
-                hienthiPassenger();
+            {
+                if (txtFirstname.Text.Equals("") || txtLastname.Text.Equals("") || txtPassportNumber.Text.Equals("") || txtPhonenumber.Text.Equals(""))
+                {
+                    MessageBox.Show("Không được bỏ trống trường nào !!!");
+                }
+                else
+                {
+
+                    int idpasscountry = Convert.ToInt32(cbPassportCountry.SelectedValue);
+                    string name = countryBUL.getNameCountryFromID(idpasscountry);
+                    PassengersDTO passengerDTO = new PassengersDTO(txtFirstname.Text, txtLastname.Text, dateTimePickerBirthday.Value.ToString("MM/dd/yyyy"), txtPassportNumber.Text, cbPassportCountry.Text, txtPhonenumber.Text);
+                    passengerDTO.IDCountry = idpasscountry;
+                    listPassenger.Add(passengerDTO);
+                    MessageBox.Show("Đã thêm passenger");
+                    
+                    clearField();
+                    hienthiPassenger();
+                }
             }
 
         }
+
+        private void clearField()
+        {
+            txtFirstname.Text = "";
+            txtLastname.Text = "";
+            txtPassportNumber.Text = "";
+            txtPhonenumber.Text = "";
+            
+        }
+
         public void hienthiPassenger()
         {
             dgvPassenger.Rows.Clear();
@@ -203,21 +219,18 @@ namespace module3
 
         private void dgvPassenger_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            indexPassengerRemove = e.RowIndex;
-           
+            int row = e.RowIndex;
+            indexPassengerRemove = row;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (indexPassengerRemove >= 0)
+            if (indexPassengerRemove >= 0 && listPassenger.Count >=1)
             {
                 listPassenger.RemoveAt(indexPassengerRemove);
                 hienthiPassenger();
             }
-            else
-            {
-                MessageBox.Show("Chọn passenger muốn xóa");
-            }
+           
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -227,19 +240,57 @@ namespace module3
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-           // MessageBox.Show("Đặt vé có schdule id " + idScheduleOutbound + " và " + idSchedulesReturn);
-            char[] speparator = { '-' };
-            string[] listIDOutBound = idScheduleOutbound.Split(speparator);
-            foreach(string i in listIDOutBound)
+            if(numberPassengers == listPassenger.Count)
             {
-              //  MessageBox.Show("ID: " + i);
+                BillingConfirmation billingConfirmation = new BillingConfirmation(totalMoney);
+                billingConfirmation.setBookingForm(this);
+                billingConfirmation.Show();
             }
-            
-          
-           // MessageBox.Show("Tổng tiền  = " +totalMoney);
-            BillingConfirmation billingConfirmation = new BillingConfirmation(totalMoney);
-            billingConfirmation.setBookingForm(this);
-            billingConfirmation.Show();
+            else
+            {
+                MessageBox.Show("Hãy thêm đủ " + numberPassengers + " passengers");
+
+            }
+           
+        }
+
+        private void txtPassportNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPassportNumber.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please enter only numbers.");
+                txtPassportNumber.Text = txtPassportNumber.Text.Remove(txtPassportNumber.Text.Length - 1);
+            }
+        }
+
+        private void txtPhonenumber_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPhonenumber.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please enter only numbers.");
+                txtPhonenumber.Text = txtPhonenumber.Text.Remove(txtPhonenumber.Text.Length - 1);
+            }
+        }
+        public void datve()
+        {
+            // duyệt từng pasenger xong đặt vé cho đi hoặc cả đi và về cho từng  passenger
+            foreach (PassengersDTO item in listPassenger)
+            {
+                // đặt vé cho từng passenger
+                if (flightReturn != null)
+                {
+                    // đặt vé 2 chiều 
+                }
+                else
+                {
+                    // đặt vé chiều đi
+                }
+            }
+
+        }
+        public string getBookingRefrecence()
+        {
+            return "AHFGDJ";
         }
     }
 }

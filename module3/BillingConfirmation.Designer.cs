@@ -103,21 +103,25 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(63, 201);
+            this.button1.Image = global::module3.Properties.Resources.tick;
+            this.button1.Location = new System.Drawing.Point(47, 201);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(105, 32);
             this.button1.TabIndex = 6;
             this.button1.Text = "Issue tickets";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
+            this.button2.Image = global::module3.Properties.Resources.cancel;
             this.button2.Location = new System.Drawing.Point(195, 201);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 32);
             this.button2.TabIndex = 7;
             this.button2.Text = "Cancel";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -137,6 +141,7 @@
             this.Controls.Add(this.label1);
             this.Name = "BillingConfirmation";
             this.Text = "BillingConfirmation";
+            this.Load += new System.EventHandler(this.BillingConfirmation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

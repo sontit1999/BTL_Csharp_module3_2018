@@ -58,14 +58,17 @@
     <Compile Include="BookingConfirmForm.Designer.cs">
       <DependentUpon>BookingConfirmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BULs\AircraftBUL.cs" />
     <Compile Include="BULs\AirportsBUL.cs" />
     <Compile Include="BULs\CabinTypesBUL.cs" />
     <Compile Include="BULs\CountryBUL.cs" />
     <Compile Include="BULs\FlightDetailBUL.cs" />
+    <Compile Include="DALs\AircraftDAL.cs" />
     <Compile Include="DALs\AirportsDAL.cs" />
     <Compile Include="DALs\CabinTypesDAL.cs" />
     <Compile Include="DALs\CountryDAL.cs" />
     <Compile Include="DALs\FlightDetailDAL.cs" />
+    <Compile Include="DTOs\AircraftDTO.cs" />
     <Compile Include="DTOs\AirportsDTO.cs" />
     <Compile Include="DTOs\CabinTypesDTO.cs" />
     <Compile Include="DTOs\CountryDTO.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -111,6 +115,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="image\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\Webp.net-resizeimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\cancel.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

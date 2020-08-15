@@ -37,11 +37,7 @@
             this.cbCabintype = new System.Windows.Forms.ComboBox();
             this.rbReturn = new System.Windows.Forms.RadioButton();
             this.rbOneWay = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtOutbound = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtReturn = new System.Windows.Forms.TextBox();
-            this.btnApply = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBoxOutbound = new System.Windows.Forms.CheckBox();
             this.dgvOutbound = new System.Windows.Forms.DataGridView();
@@ -51,8 +47,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtNumberPassenger = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnBook = new System.Windows.Forms.Button();
+            this.dateTimePickerOutbond = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerReturn = new System.Windows.Forms.DateTimePicker();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnBook = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutbound)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).BeginInit();
             this.SuspendLayout();
@@ -144,48 +144,16 @@
             this.rbOneWay.UseVisualStyleBackColor = true;
             this.rbOneWay.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(198, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Outbound";
-            // 
-            // txtOutbound
-            // 
-            this.txtOutbound.Location = new System.Drawing.Point(276, 80);
-            this.txtOutbound.Name = "txtOutbound";
-            this.txtOutbound.Size = new System.Drawing.Size(124, 20);
-            this.txtOutbound.TabIndex = 11;
-            this.txtOutbound.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(444, 83);
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Location = new System.Drawing.Point(470, 86);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 12;
             this.label6.Text = "Return";
-            // 
-            // txtReturn
-            // 
-            this.txtReturn.Location = new System.Drawing.Point(554, 80);
-            this.txtReturn.Name = "txtReturn";
-            this.txtReturn.Size = new System.Drawing.Size(124, 20);
-            this.txtReturn.TabIndex = 13;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Location = new System.Drawing.Point(701, 77);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
-            this.btnApply.TabIndex = 14;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -260,6 +228,7 @@
             this.txtNumberPassenger.Name = "txtNumberPassenger";
             this.txtNumberPassenger.Size = new System.Drawing.Size(44, 20);
             this.txtNumberPassenger.TabIndex = 22;
+            this.txtNumberPassenger.TextChanged += new System.EventHandler(this.txtNumberPassenger_TextChanged);
             // 
             // label10
             // 
@@ -270,25 +239,67 @@
             this.label10.TabIndex = 23;
             this.label10.Text = "Passengers";
             // 
-            // btnBook
+            // dateTimePickerOutbond
             // 
-            this.btnBook.Location = new System.Drawing.Point(522, 508);
-            this.btnBook.Name = "btnBook";
-            this.btnBook.Size = new System.Drawing.Size(75, 23);
-            this.btnBook.TabIndex = 24;
-            this.btnBook.Text = "BookFilght";
-            this.btnBook.UseVisualStyleBackColor = true;
-            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
+            this.dateTimePickerOutbond.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerOutbond.Location = new System.Drawing.Point(266, 80);
+            this.dateTimePickerOutbond.Name = "dateTimePickerOutbond";
+            this.dateTimePickerOutbond.Size = new System.Drawing.Size(131, 20);
+            this.dateTimePickerOutbond.TabIndex = 26;
+            // 
+            // dateTimePickerReturn
+            // 
+            this.dateTimePickerReturn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReturn.Location = new System.Drawing.Point(544, 79);
+            this.dateTimePickerReturn.Name = "dateTimePickerReturn";
+            this.dateTimePickerReturn.Size = new System.Drawing.Size(131, 20);
+            this.dateTimePickerReturn.TabIndex = 28;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(649, 508);
+            this.btnExit.Image = global::module3.Properties.Resources.cancel;
+            this.btnExit.Location = new System.Drawing.Point(655, 496);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(69, 35);
             this.btnExit.TabIndex = 25;
             this.btnExit.Text = "Exit";
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnBook
+            // 
+            this.btnBook.Image = global::module3.Properties.Resources.tick;
+            this.btnBook.Location = new System.Drawing.Point(452, 496);
+            this.btnBook.Name = "btnBook";
+            this.btnBook.Size = new System.Drawing.Size(147, 35);
+            this.btnBook.TabIndex = 24;
+            this.btnBook.Text = "BookFilght";
+            this.btnBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBook.UseVisualStyleBackColor = true;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
+            // 
+            // btnApply
+            // 
+            this.btnApply.Image = global::module3.Properties.Resources.search;
+            this.btnApply.Location = new System.Drawing.Point(700, 72);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(87, 34);
+            this.btnApply.TabIndex = 14;
+            this.btnApply.Text = "Apply";
+            this.btnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label5.Location = new System.Drawing.Point(196, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Outbound";
             // 
             // Form1
             // 
@@ -296,6 +307,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 542);
+            this.Controls.Add(this.dateTimePickerReturn);
+            this.Controls.Add(this.dateTimePickerOutbond);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnBook);
             this.Controls.Add(this.label10);
@@ -308,9 +321,7 @@
             this.Controls.Add(this.checkBoxOutbound);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.txtReturn);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtOutbound);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.rbOneWay);
             this.Controls.Add(this.rbReturn);
@@ -342,9 +353,7 @@
         private System.Windows.Forms.RadioButton rbReturn;
         private System.Windows.Forms.RadioButton rbOneWay;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtOutbound;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtReturn;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox checkBoxOutbound;
@@ -357,6 +366,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnBook;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOutbond;
+        private System.Windows.Forms.DateTimePicker dateTimePickerReturn;
     }
 }
 

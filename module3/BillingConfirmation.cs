@@ -39,5 +39,10 @@ namespace module3
         {
             bookingConfirm = booking;
         }
+
+        private void BillingConfirmation_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
