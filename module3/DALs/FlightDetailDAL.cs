@@ -22,7 +22,7 @@ namespace module3.DALs
         {
             con.Open();
             List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Routes.DepartureAirportID = @from and Routes.ArrivalAirportID = @to and Schedules.Date >= @date";
+            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Routes.DepartureAirportID = @from and Routes.ArrivalAirportID = @to and Schedules.Date = @date";
             SqlCommand cmd = new SqlCommand(sql, con);
             if (isReturn)
             {
@@ -160,7 +160,7 @@ namespace module3.DALs
         {
             con.Open();
             List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Routes.DepartureAirportID = @from  and Schedules.Date >= @date";
+            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Routes.DepartureAirportID = @from  and Schedules.Date = @date";
             SqlCommand cmd = new SqlCommand(sql, con);
             
                
@@ -190,7 +190,7 @@ namespace module3.DALs
         {
             con.Open();
             List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date >= @date";
+            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date = @date";
             SqlCommand cmd = new SqlCommand(sql, con);
 
 

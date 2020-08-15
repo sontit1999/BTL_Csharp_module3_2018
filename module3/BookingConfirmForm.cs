@@ -49,7 +49,7 @@ namespace module3
             lbDateOutbound.Text = dateOutbound;
 
 
-            MessageBox.Show("idcabind recive : " + idCabin);
+         //   MessageBox.Show("idcabind recive : " + idCabin);
             idCabintype = idCabin;
             string nameCbintype = CabinTypesBUL.getNameCabinTypeFromID(idCabintype);
             lbCabintypeOutbound.Text = nameCbintype;
@@ -57,7 +57,7 @@ namespace module3
           //  lbCabintypeReturn.Text = nameCbintype;
            
             listPassenger = new List<PassengersDTO>();
-            MessageBox.Show("id schecdule outbound: " + idScheduleOutbound);
+       //     MessageBox.Show("id schecdule outbound: " + idScheduleOutbound);
             
             if (idSchedulesReturn != null)
             {
@@ -69,7 +69,7 @@ namespace module3
             }
             else
             {
-                MessageBox.Show("ko có vé khứ hồi");
+               // MessageBox.Show("ko có vé khứ hồi");
                 // ẩn view
                 lbDateReturn.Hide();
                 lbFlightReturn.Hide();
@@ -227,16 +227,16 @@ namespace module3
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Đặt vé có schdule id " + idScheduleOutbound + " và " + idSchedulesReturn);
+           // MessageBox.Show("Đặt vé có schdule id " + idScheduleOutbound + " và " + idSchedulesReturn);
             char[] speparator = { '-' };
             string[] listIDOutBound = idScheduleOutbound.Split(speparator);
             foreach(string i in listIDOutBound)
             {
-                MessageBox.Show("ID: " + i);
+              //  MessageBox.Show("ID: " + i);
             }
             
           
-            MessageBox.Show("Tổng tiền  = " +totalMoney);
+           // MessageBox.Show("Tổng tiền  = " +totalMoney);
             BillingConfirmation billingConfirmation = new BillingConfirmation(totalMoney);
             billingConfirmation.setBookingForm(this);
             billingConfirmation.Show();

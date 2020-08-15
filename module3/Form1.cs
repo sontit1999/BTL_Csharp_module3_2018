@@ -46,11 +46,17 @@ namespace module3
             cbTo.DataSource = airporstBUL.getAirport();
             cbTo.DisplayMember = "IATACode";
             cbTo.ValueMember = "ID";
+            cbTo.SelectedIndex = 2;
 
             cbCabintype.DataSource = cabinTypesBUL.getCabinType();
             cbCabintype.DisplayMember = "Name";
             cbCabintype.ValueMember = "ID";
-           
+
+            // ngày đi mặc  định
+            txtOutbound.Text = "2018/10/10";
+
+            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -78,8 +84,8 @@ namespace module3
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-             MessageBox.Show("booking : " + idScheduleOutBound + " - " + idScheduleReturn);
-             MessageBox.Show("Tiền đi :" + tiendi + " , Tiên về = "+ tienve);
+            // MessageBox.Show("booking : " + idScheduleOutBound + " - " + idScheduleReturn);
+            // MessageBox.Show("Tiền đi :" + tiendi + " , Tiên về = "+ tienve);
             
             if (isHiddenReturn)
             {   
@@ -89,8 +95,25 @@ namespace module3
                 }
                 else
                 {
-                    MessageBox.Show(" ID cbintype"+ Convert.ToInt32(cbCabintype.SelectedValue));
+                   // MessageBox.Show(" ID cbintype"+ Convert.ToInt32(cbCabintype.SelectedValue));
                     BookingConfirmForm booking = new BookingConfirmForm(idScheduleOutBound, idScheduleReturn, Convert.ToInt32(cbCabintype.SelectedValue),cbFrom.Text, cbTo.Text,flighnumberOutbound,dateOutbound,flighnumberReturn,dateReturn);
+                    switch (int.Parse(cbCabintype.SelectedValue.ToString()))
+                    {
+                        case 1:
+                         //   MessageBox.Show("Economy");
+                           
+                            break;
+                        case 2:
+                         //   MessageBox.Show("Bussiness");
+                            tiendi = tiendi * 1.35;
+                            tienve = tienve * 1.35;
+                            break;
+                        case 3:
+                       //     MessageBox.Show("Firstclass");
+                            tiendi = tiendi * 1.35*1.3;
+                            tienve = tienve * 1.35*1.3;
+                            break;
+                    }
                     booking.totalMoney = (tienve + tiendi).ToString();
                     booking.Show();
                 }
@@ -103,6 +126,23 @@ namespace module3
                 }
                 else
                 {
+                    switch (int.Parse(cbCabintype.SelectedValue.ToString()))
+                    {
+                        case 1:
+                            //   MessageBox.Show("Economy");
+
+                            break;
+                        case 2:
+                            //   MessageBox.Show("Bussiness");
+                            tiendi = tiendi * 1.35;
+                            tienve = tienve * 1.35;
+                            break;
+                        case 3:
+                            //     MessageBox.Show("Firstclass");
+                            tiendi = tiendi * 1.35 * 1.3;
+                            tienve = tienve * 1.35 * 1.3;
+                            break;
+                    }
                     BookingConfirmForm booking = new BookingConfirmForm(idScheduleOutBound, idScheduleReturn, Convert.ToInt32(cbCabintype.SelectedValue), cbFrom.Text, cbTo.Text, flighnumberOutbound,dateOutbound, flighnumberReturn, dateReturn);
                     booking.totalMoney = (tienve + tiendi).ToString();
                     booking.Show();
@@ -230,8 +270,8 @@ namespace module3
             flighnumberOutbound = dgvOutbound.Rows[row].Cells[5].Value.ToString();
             dateOutbound = dgvOutbound.Rows[row].Cells[3].Value.ToString();
             tiendi = double.Parse(dgvOutbound.Rows[row].Cells[6].Value.ToString());
-            // int numperson = flightDetailBUL.getPassengerFromSchedule(id);
-            //  txtNumberPassenger.Text = numperson + "";
+            int numperson = flightDetailBUL.getPassengerFromSchedule(int.Parse(idScheduleOutBound));
+            txtNumberPassenger.Text = numperson + "";
         }
 
         private void dgvReturn_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -243,8 +283,8 @@ namespace module3
             flighnumberReturn = dgvReturn.Rows[row].Cells[5].Value.ToString();
             dateReturn = dgvReturn.Rows[row].Cells[3].Value.ToString();
             tienve= double.Parse(dgvReturn.Rows[row].Cells[6].Value.ToString());
-            // int numperson = flightDetailBUL.getPassengerFromSchedule(id);
-            //  txtNumberPassenger.Text = numperson + "";
+             int numperson = flightDetailBUL.getPassengerFromSchedule(int.Parse(idScheduleReturn.ToString()));
+             txtNumberPassenger.Text = numperson + "";
         }
 
         private void cbCabintype_SelectedIndexChanged(object sender, EventArgs e)
@@ -255,6 +295,11 @@ namespace module3
         private void cbCabintype_SelectedValueChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
