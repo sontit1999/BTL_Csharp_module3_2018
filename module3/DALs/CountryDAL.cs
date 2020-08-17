@@ -52,5 +52,21 @@ namespace module3.DALs
             con.Close();
             return name;
         }
+        public int getIDCountryFromName(string name)
+        {
+            int IDcountry = 0;
+            con.Open();
+            string sql = "select ID from Countries where Name = @name";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("name", name);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                IDcountry = Convert.ToInt32(dr["ID"]);
+                break;
+            }
+            con.Close();
+            return IDcountry;
+        }
     }
 }

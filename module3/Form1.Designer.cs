@@ -37,7 +37,6 @@
             this.cbCabintype = new System.Windows.Forms.ComboBox();
             this.rbReturn = new System.Windows.Forms.RadioButton();
             this.rbOneWay = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBoxOutbound = new System.Windows.Forms.CheckBox();
             this.dgvOutbound = new System.Windows.Forms.DataGridView();
@@ -52,6 +51,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutbound)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).BeginInit();
@@ -87,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(239, 45);
+            this.label3.Location = new System.Drawing.Point(239, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 4;
@@ -96,9 +96,9 @@
             // cbTo
             // 
             this.cbTo.FormattingEnabled = true;
-            this.cbTo.Location = new System.Drawing.Point(276, 42);
+            this.cbTo.Location = new System.Drawing.Point(302, 45);
             this.cbTo.Name = "cbTo";
-            this.cbTo.Size = new System.Drawing.Size(121, 21);
+            this.cbTo.Size = new System.Drawing.Size(131, 21);
             this.cbTo.TabIndex = 5;
             // 
             // label4
@@ -113,9 +113,9 @@
             // cbCabintype
             // 
             this.cbCabintype.FormattingEnabled = true;
-            this.cbCabintype.Location = new System.Drawing.Point(554, 42);
+            this.cbCabintype.Location = new System.Drawing.Point(544, 42);
             this.cbCabintype.Name = "cbCabintype";
-            this.cbCabintype.Size = new System.Drawing.Size(121, 21);
+            this.cbCabintype.Size = new System.Drawing.Size(131, 21);
             this.cbCabintype.TabIndex = 7;
             this.cbCabintype.SelectedIndexChanged += new System.EventHandler(this.cbCabintype_SelectedIndexChanged);
             this.cbCabintype.SelectedValueChanged += new System.EventHandler(this.cbCabintype_SelectedValueChanged);
@@ -143,17 +143,6 @@
             this.rbOneWay.Text = "One way";
             this.rbOneWay.UseVisualStyleBackColor = true;
             this.rbOneWay.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label6.Location = new System.Drawing.Point(470, 86);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Return";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -207,9 +196,9 @@
             // dgvReturn
             // 
             this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReturn.Location = new System.Drawing.Point(41, 327);
+            this.dgvReturn.Location = new System.Drawing.Point(31, 327);
             this.dgvReturn.Name = "dgvReturn";
-            this.dgvReturn.Size = new System.Drawing.Size(756, 141);
+            this.dgvReturn.Size = new System.Drawing.Size(766, 141);
             this.dgvReturn.TabIndex = 20;
             this.dgvReturn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReturn_CellClick);
             // 
@@ -242,7 +231,7 @@
             // dateTimePickerOutbond
             // 
             this.dateTimePickerOutbond.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerOutbond.Location = new System.Drawing.Point(266, 80);
+            this.dateTimePickerOutbond.Location = new System.Drawing.Point(302, 79);
             this.dateTimePickerOutbond.Name = "dateTimePickerOutbond";
             this.dateTimePickerOutbond.Size = new System.Drawing.Size(131, 20);
             this.dateTimePickerOutbond.TabIndex = 26;
@@ -291,21 +280,34 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Image = global::module3.Properties.Resources.icons8_reply_arrow_24;
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Location = new System.Drawing.Point(456, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "         Return";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label5.Location = new System.Drawing.Point(196, 83);
+            this.label5.Image = global::module3.Properties.Resources.icons8_forward_arrow_24;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Location = new System.Drawing.Point(215, 81);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Outbound";
+            this.label5.Text = "         Outbound";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 542);
             this.Controls.Add(this.dateTimePickerReturn);
             this.Controls.Add(this.dateTimePickerOutbond);

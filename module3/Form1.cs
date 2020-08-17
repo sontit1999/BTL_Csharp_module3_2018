@@ -176,8 +176,16 @@ namespace module3
 
 
             if (Convert.ToInt32(txtNumberPassenger.Text) > sogheconlai)
-            {
-                MessageBox.Show("Chuyến bay đi  chỉ còn " + sogheconlai + " ghế !");
+            {   
+                if(sogheconlai <= 0)
+                {
+                    MessageBox.Show("Chuyến bay đi này đã hết  ghế ! VUi lòng chọn chuyến khác!!!");
+                }
+                else
+                {
+                    MessageBox.Show("Chuyến bay đi  chỉ còn " + sogheconlai + " ghế !");
+                }
+               
                 return false;
             }
             else
@@ -216,7 +224,14 @@ namespace module3
 
             if (Convert.ToInt32(txtNumberPassenger.Text) > sogheconlai)
             {
-                MessageBox.Show("Chuyến bay về chỉ còn " + sogheconlai + " ghế !");
+                if (sogheconlai <= 0)
+                {
+                    MessageBox.Show("Chuyến bay khứ hồi này đã hết  ghế !VUi lòng chọn chuyến khác!!!");
+                }
+                else
+                {
+                    MessageBox.Show("Chuyến bay về  chỉ còn " + sogheconlai + " ghế !");
+                }
                 return false;
             }
             else

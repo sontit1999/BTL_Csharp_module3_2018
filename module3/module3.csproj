@@ -63,17 +63,20 @@
     <Compile Include="BULs\CabinTypesBUL.cs" />
     <Compile Include="BULs\CountryBUL.cs" />
     <Compile Include="BULs\FlightDetailBUL.cs" />
+    <Compile Include="BULs\TicketBUL.cs" />
     <Compile Include="DALs\AircraftDAL.cs" />
     <Compile Include="DALs\AirportsDAL.cs" />
     <Compile Include="DALs\CabinTypesDAL.cs" />
     <Compile Include="DALs\CountryDAL.cs" />
     <Compile Include="DALs\FlightDetailDAL.cs" />
+    <Compile Include="DALs\TicketDAL.cs" />
     <Compile Include="DTOs\AircraftDTO.cs" />
     <Compile Include="DTOs\AirportsDTO.cs" />
     <Compile Include="DTOs\CabinTypesDTO.cs" />
     <Compile Include="DTOs\CountryDTO.cs" />
     <Compile Include="DTOs\FlightDetailDTO.cs" />
     <Compile Include="DTOs\PassengersDTO.cs" />
+    <Compile Include="DTOs\TicketDTO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="image\cancel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\icons8-forward-arrow-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\icons8-reply-arrow-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -71,10 +71,10 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPassenger)).BeginInit();
             this.SuspendLayout();
             // 
@@ -371,6 +371,7 @@
             this.cbPassportCountry.Name = "cbPassportCountry";
             this.cbPassportCountry.Size = new System.Drawing.Size(112, 21);
             this.cbPassportCountry.TabIndex = 30;
+            this.cbPassportCountry.SelectedIndexChanged += new System.EventHandler(this.cbPassportCountry_SelectedIndexChanged);
             // 
             // label28
             // 
@@ -427,9 +428,9 @@
             this.Column4,
             this.Column6,
             this.Column7});
-            this.dgvPassenger.Location = new System.Drawing.Point(44, 322);
+            this.dgvPassenger.Location = new System.Drawing.Point(96, 322);
             this.dgvPassenger.Name = "dgvPassenger";
-            this.dgvPassenger.Size = new System.Drawing.Size(708, 125);
+            this.dgvPassenger.Size = new System.Drawing.Size(657, 125);
             this.dgvPassenger.TabIndex = 37;
             this.dgvPassenger.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPassenger_CellClick);
             // 
@@ -463,30 +464,6 @@
             this.Column7.HeaderText = "Phone";
             this.Column7.Name = "Column7";
             // 
-            // btnBack
-            // 
-            this.btnBack.Image = global::module3.Properties.Resources.left;
-            this.btnBack.Location = new System.Drawing.Point(150, 477);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(157, 31);
-            this.btnBack.TabIndex = 38;
-            this.btnBack.Text = "Back to search for flight";
-            this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Image = global::module3.Properties.Resources.tick;
-            this.btnConfirm.Location = new System.Drawing.Point(338, 477);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(129, 31);
-            this.btnConfirm.TabIndex = 39;
-            this.btnConfirm.Text = "Confirm booking";
-            this.btnConfirm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(652, 453);
@@ -502,14 +479,38 @@
             this.dateTimePickerBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerBirthday.Location = new System.Drawing.Point(591, 193);
             this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
-            this.dateTimePickerBirthday.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(162, 20);
             this.dateTimePickerBirthday.TabIndex = 41;
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Image = global::module3.Properties.Resources.tick;
+            this.btnConfirm.Location = new System.Drawing.Point(338, 477);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(129, 31);
+            this.btnConfirm.TabIndex = 39;
+            this.btnConfirm.Text = "Confirm booking";
+            this.btnConfirm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Image = global::module3.Properties.Resources.left;
+            this.btnBack.Location = new System.Drawing.Point(150, 477);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(157, 31);
+            this.btnBack.TabIndex = 38;
+            this.btnBack.Text = "Back to search for flight";
+            this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // BookingConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 539);
             this.Controls.Add(this.dateTimePickerBirthday);
             this.Controls.Add(this.btnRemove);

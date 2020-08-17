@@ -19,7 +19,7 @@ namespace module3.DTOs
         {
 
         }
-        public PassengersDTO(string fn, string ln, string bd, string pn, string pc, string p)
+        public PassengersDTO(string fn, string ln, string bd, string pn, string pc, string p,int idpassportCountry)
         {
             this.FirstName = fn;
             this.LastName = ln;
@@ -27,6 +27,7 @@ namespace module3.DTOs
             this.PassportNumber = pn;
             this.PassporCountry = pc;
             this.Phone = p;
+            this.IDCountry = idpassportCountry;
         }
     }
 }

@@ -21,5 +21,10 @@ namespace module3.BULs
            
             return countryDAL.getNameCountryFromID(idCountry);
         }
+        public int getIDCountryFromName(string name)
+        {
+           
+            return countryDAL.getIDCountryFromName(name);
+        }
     }
 }

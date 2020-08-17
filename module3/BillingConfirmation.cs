@@ -31,6 +31,7 @@ namespace module3
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bookingConfirm.datve();
             MessageBox.Show("Đã đặt vé thành công!");
             bookingConfirm.Close();
             Close();

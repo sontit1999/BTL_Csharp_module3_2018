@@ -21,6 +21,7 @@ namespace module3
         FlightDetailBUL flightDetailBUL = new FlightDetailBUL();
         CabinTypesBUL CabinTypesBUL = new CabinTypesBUL();
         CountryBUL countryBUL = new CountryBUL();
+        TicketBUL ticketBUL = new TicketBUL();
         List<PassengersDTO> listPassenger ;
         int numberPassengers;
         int indexPassengerRemove;
@@ -55,6 +56,7 @@ namespace module3
                 lbFlightReturn.Hide();
                 label12.Hide();
                 label13.Hide();
+                label15.Hide();
                 label17.Hide();
                 label19.Hide();
                 label21.Hide();
@@ -172,16 +174,17 @@ namespace module3
                 }
                 else
                 {
+                  
+                     int idpasscountry = countryBUL.getIDCountryFromName(cbPassportCountry.Text);
+                     string name = countryBUL.getNameCountryFromID(idpasscountry);
+                     PassengersDTO passengerDTO = new PassengersDTO(txtFirstname.Text, txtLastname.Text, dateTimePickerBirthday.Value.ToString("MM/dd/yyyy"), txtPassportNumber.Text, cbPassportCountry.Text, txtPhonenumber.Text,idpasscountry);
+                    // MessageBox.Show("Id country add  = " + passengerDTO.IDCountry);
+                     listPassenger.Add(passengerDTO);
+                     MessageBox.Show("Đã thêm passenger");
 
-                    int idpasscountry = Convert.ToInt32(cbPassportCountry.SelectedValue);
-                    string name = countryBUL.getNameCountryFromID(idpasscountry);
-                    PassengersDTO passengerDTO = new PassengersDTO(txtFirstname.Text, txtLastname.Text, dateTimePickerBirthday.Value.ToString("MM/dd/yyyy"), txtPassportNumber.Text, cbPassportCountry.Text, txtPhonenumber.Text);
-                    passengerDTO.IDCountry = idpasscountry;
-                    listPassenger.Add(passengerDTO);
-                    MessageBox.Show("Đã thêm passenger");
+                     clearField();
+                     hienthiPassenger();
                     
-                    clearField();
-                    hienthiPassenger();
                 }
             }
 
@@ -240,6 +243,7 @@ namespace module3
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            
             if(numberPassengers == listPassenger.Count)
             {
                 BillingConfirmation billingConfirmation = new BillingConfirmation(totalMoney);
@@ -251,7 +255,8 @@ namespace module3
                 MessageBox.Show("Hãy thêm đủ " + numberPassengers + " passengers");
 
             }
-           
+            
+           // datve();
         }
 
         private void txtPassportNumber_TextChanged(object sender, EventArgs e)
@@ -273,24 +278,55 @@ namespace module3
         }
         public void datve()
         {
+
             // duyệt từng pasenger xong đặt vé cho đi hoặc cả đi và về cho từng  passenger
             foreach (PassengersDTO item in listPassenger)
             {
-                // đặt vé cho từng passenger
+              //   đặt vé cho từng passenger
                 if (flightReturn != null)
                 {
                     // đặt vé 2 chiều 
+
+                    // đặt vé chiều đi
+                    TicketDTO ticketDi = new TicketDTO(Convert.ToInt32(flightOutbound.ID), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
+                    ticketBUL.addTicket(ticketDi);
+
+                    // đặt vé chiều về
+                    TicketDTO ticketVe = new TicketDTO(Convert.ToInt32(flightReturn.ID), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
+                    ticketBUL.addTicket(ticketVe);
                 }
                 else
                 {
                     // đặt vé chiều đi
+                    TicketDTO ticket = new TicketDTO(Convert.ToInt32(flightOutbound.ID),idCabintype,item.FirstName,item.LastName,item.Phone,item.PassportNumber,item.IDCountry,getBookingRefrecence());
+                    ticketBUL.addTicket(ticket);
+                   
                 }
             }
 
+          //  MessageBox.Show("Đặt vé thành công");
         }
         public string getBookingRefrecence()
         {
-            return "AHFGDJ";
+            Random rnd = new Random();
+            string basestring = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
+            string booking = null;
+            do
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    int indexRandom = rnd.Next(0, basestring.Length);
+                    booking = booking + basestring[indexRandom];
+                }
+            } while (ticketBUL.checkBookingExist(booking));
+            
+            return booking;
+        }
+
+        private void cbPassportCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
