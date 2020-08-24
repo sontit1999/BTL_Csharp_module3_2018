@@ -230,8 +230,12 @@ namespace module3
         {
             if (indexPassengerRemove >= 0 && listPassenger.Count >=1)
             {
-                listPassenger.RemoveAt(indexPassengerRemove);
-                hienthiPassenger();
+                DialogResult result = MessageBox.Show("Xóa passenger!!", "Bạn có chắc muốn xóa " + listPassenger[indexPassengerRemove].FirstName + " hay không?", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK) {
+                    listPassenger.RemoveAt(indexPassengerRemove);
+                    hienthiPassenger();
+                }
+                
             }
            
         }

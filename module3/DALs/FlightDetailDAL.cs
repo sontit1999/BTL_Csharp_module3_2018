@@ -67,40 +67,7 @@ namespace module3.DALs
             con.Close();
             return list;
         }
-        public List<FlightDetailDTO> getFlightReturn(int idAirportFrom, int idAirportTo, string dateOutbound,string dateReturn, bool isReturn)
-        {
-            con.Open();
-            List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Routes.DepartureAirportID = @from and Routes.ArrivalAirportID = @to and Schedules.Date >= @dateOutbound and Schedules.Date >= @dateReturn ";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            if (isReturn)
-            {
-                cmd.Parameters.AddWithValue("from", idAirportTo);
-                cmd.Parameters.AddWithValue("to", idAirportFrom);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("from", idAirportFrom);
-                cmd.Parameters.AddWithValue("to", idAirportTo);
-            }
-
-            cmd.Parameters.AddWithValue("dateOutbound", dateOutbound);
-            cmd.Parameters.AddWithValue("dateReturn", dateReturn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                string from = airportsDAL.getNameFromCode(Convert.ToInt32(dr["DepartureAirportID"]));
-                string to = airportsDAL.getNameFromCode(Convert.ToInt32(dr["ArrivalAirportID"]));
-                FlightDetailDTO flightDetail = new FlightDetailDTO(from, to, dr["Date"].ToString().Split(null)[0], dr["Time"].ToString(), dr["FlightNumber"].ToString(), dr["EconomyPrice"].ToString(), 0);
-                flightDetail.ID = dr["ID"].ToString();
-                list.Add(flightDetail);
-
-            }
-
-            con.Close();
-            return list;
-        }
+        
         // get schedule after and before three days
         public List<FlightDetailDTO> getFlightThreeDays(int idAirportFrom, int idAirportTo, string date)
         {

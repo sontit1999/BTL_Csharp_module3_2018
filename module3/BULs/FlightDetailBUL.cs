@@ -38,11 +38,7 @@ namespace module3.BULs
         {         
             return flightDetailDAL.getFilghDetailFromIDschedule(idschedule);
         }
-        public List<FlightDetailDTO> getFlightReturn(int idAirportFrom, int idAirportTo, string dateOutbound, string dateReturn, bool isReturn)
-        {
-            
-            return flightDetailDAL.getFlightReturn(idAirportFrom,idAirportTo,dateOutbound,dateReturn,true);
-        }
+       
         public List<FlightDetailDTO> getTuyenNoi(int idFrom,int idTo, string date) 
         {
             List<FlightDetailDTO> listTong = new List<FlightDetailDTO>();
