@@ -292,18 +292,37 @@ namespace module3
                     // đặt vé 2 chiều 
 
                     // đặt vé chiều đi
-                    TicketDTO ticketDi = new TicketDTO(Convert.ToInt32(flightOutbound.ID), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
-                    ticketBUL.addTicket(ticketDi);
-
+                    string idOutbound = flightOutbound.ID;
+                    char[] separator = { '-' };
+                    string[] listID = idOutbound.Split(separator);
+                    foreach (String i in listID)
+                    {
+                        TicketDTO ticket = new TicketDTO(Convert.ToInt32(i), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
+                        ticketBUL.addTicket(ticket);
+                    }
+                   
                     // đặt vé chiều về
-                    TicketDTO ticketVe = new TicketDTO(Convert.ToInt32(flightReturn.ID), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
-                    ticketBUL.addTicket(ticketVe);
+                    string idReturn = flightReturn.ID;
+                    char[] separators = { '-' };
+                    string[] listIDReturn = idReturn.Split(separator);
+                    foreach (String i in listIDReturn)
+                    {
+                        TicketDTO ticket = new TicketDTO(Convert.ToInt32(i), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
+                        ticketBUL.addTicket(ticket);
+                    }
+                   
                 }
                 else
                 {
                     // đặt vé chiều đi
-                    TicketDTO ticket = new TicketDTO(Convert.ToInt32(flightOutbound.ID),idCabintype,item.FirstName,item.LastName,item.Phone,item.PassportNumber,item.IDCountry,getBookingRefrecence());
-                    ticketBUL.addTicket(ticket);
+                    string id = flightOutbound.ID;
+                    char[] separator = { '-' };
+                    string[] listID = id.Split(separator);
+                    foreach (String i in listID)
+                    {
+                        TicketDTO ticket = new TicketDTO(Convert.ToInt32(i), idCabintype, item.FirstName, item.LastName, item.Phone, item.PassportNumber, item.IDCountry, getBookingRefrecence());
+                        ticketBUL.addTicket(ticket);
+                    }
                    
                 }
             }

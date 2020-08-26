@@ -35,23 +35,21 @@ namespace module3
         {
 
             rbOneWay.Checked = true;
-
+            // hiển thị lên checkbox FROM
             cbFrom.DataSource = airporstBUL.getAirport();
             cbFrom.DisplayMember = "IATACode";
             cbFrom.ValueMember = "ID";
-
+            // hiển thị lên checkbox TO
             cbTo.DataSource = airporstBUL.getAirport();
             cbTo.DisplayMember = "IATACode";
             cbTo.ValueMember = "ID";
             cbTo.SelectedIndex = 2;
-
+            // hieernt hị cabintyppe
             cbCabintype.DataSource = cabinTypesBUL.getCabinType();
             cbCabintype.DisplayMember = "Name";
             cbCabintype.ValueMember = "ID";
 
-            // ngày đi mặc  định
-
-
+          
             // load default flight
             listUoutBound = flightDetailBUL.getAllFlight();
             flightDetailBUL.displayFlightToDGV(listUoutBound, dgvOutbound,1);
@@ -149,7 +147,61 @@ namespace module3
         }
 
         private bool checkChuyenBayDIConDuChohaykhong()
-        {   
+        {
+            // check từng chuyến đi nếu nối tuyến
+            string id = flightOutbound.ID;
+            char[] separator = { '-' };
+            string[] listID = id.Split(separator);
+            foreach (String i in listID)
+            {
+                // duyệt từng chuyến con để check
+                // check chuyến đi với số passenger tương ứng xem còn ghế không
+                int numberSeat = flightDetailBUL.getNumberCabintypeSeatbookInschedule(Convert.ToInt32(i), Convert.ToInt32(cbCabintype.SelectedValue));
+
+                AircraftDTO maybay = aircraftBUL.getAircraftFromIDSchedule(Convert.ToInt32(i));
+                int sogheconlai = 0;
+                if (Convert.ToInt32(cbCabintype.SelectedValue) == 1)
+                {
+                    // nếu là economy
+                    sogheconlai = maybay.EconomySeat - numberSeat;
+
+                }
+                else if (Convert.ToInt32(cbCabintype.SelectedValue) == 2)
+                {
+                    // nếu là bussiness
+                    sogheconlai = maybay.BusinessSeat - numberSeat;
+
+                }
+                else if (Convert.ToInt32(cbCabintype.SelectedValue) == 3)
+                {
+                    // nếu là first class
+                    sogheconlai = maybay.FirstClassSeat - numberSeat;
+
+                }
+
+
+                if (Convert.ToInt32(txtNumberPassenger.Text) > sogheconlai)
+                {
+                    if (sogheconlai <= 0)
+                    {
+                        MessageBox.Show("Chuyến bay đi "+ i + ": này đã hết  ghế ! VUi lòng chọn chuyến khác!!!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chuyến bay đi " + i + ": chỉ còn " + sogheconlai + " ghế !");
+                    }
+
+                    return false;
+                }
+                else
+                {
+                    // chuyển sang xác nhận
+                    return true;
+                }
+               
+            }
+            return true;
+            /*
             // check chuyến đi với số passenger tương ứng xem còn ghế không
             int numberSeat = flightDetailBUL.getNumberCabintypeSeatbookInschedule(Convert.ToInt32(flightOutbound.ID), Convert.ToInt32(cbCabintype.SelectedValue));
            
@@ -193,52 +245,60 @@ namespace module3
                 // chuyển sang xác nhận
                 return true;
             }
+            */
 
         }
         private bool checkChuyenBayVeConDuChohaykhong()
         {
             // check chuyến về với số passenger tương ứng xem còn ghế không
-            int numberSeat = flightDetailBUL.getNumberCabintypeSeatbookInschedule(Convert.ToInt32(flightReturn.ID), Convert.ToInt32(cbCabintype.SelectedValue));
-          
-            AircraftDTO maybay = aircraftBUL.getAircraftFromIDSchedule(Convert.ToInt32(flightReturn.ID));
-            int sogheconlai = 0;
-            if (Convert.ToInt32(cbCabintype.SelectedValue) == 1)
+            string id = flightReturn.ID;
+            char[] separator = { '-' };
+            string[] listID = id.Split(separator);
+            foreach (String i in listID)
             {
-                // nếu là economy
-                sogheconlai = maybay.EconomySeat - numberSeat;
-               
-            }
-            else if (Convert.ToInt32(cbCabintype.SelectedValue) == 2)
-            {
-                // nếu là bussiness
-                sogheconlai = maybay.BusinessSeat - numberSeat;
-               
-            }
-            else if (Convert.ToInt32(cbCabintype.SelectedValue) == 3)
-            {
-                // nếu là first class
-                sogheconlai = maybay.FirstClassSeat - numberSeat;
-                
-            }
+                int numberSeat = flightDetailBUL.getNumberCabintypeSeatbookInschedule(Convert.ToInt32(i), Convert.ToInt32(cbCabintype.SelectedValue));
 
-
-            if (Convert.ToInt32(txtNumberPassenger.Text) > sogheconlai)
-            {
-                if (sogheconlai <= 0)
+                AircraftDTO maybay = aircraftBUL.getAircraftFromIDSchedule(Convert.ToInt32(i));
+                int sogheconlai = 0;
+                if (Convert.ToInt32(cbCabintype.SelectedValue) == 1)
                 {
-                    MessageBox.Show("Chuyến bay khứ hồi này đã hết  ghế !VUi lòng chọn chuyến khác!!!");
+                    // nếu là economy
+                    sogheconlai = maybay.EconomySeat - numberSeat;
+
+                }
+                else if (Convert.ToInt32(cbCabintype.SelectedValue) == 2)
+                {
+                    // nếu là bussiness
+                    sogheconlai = maybay.BusinessSeat - numberSeat;
+
+                }
+                else if (Convert.ToInt32(cbCabintype.SelectedValue) == 3)
+                {
+                    // nếu là first class
+                    sogheconlai = maybay.FirstClassSeat - numberSeat;
+
+                }
+
+
+                if (Convert.ToInt32(txtNumberPassenger.Text) > sogheconlai)
+                {
+                    if (sogheconlai <= 0)
+                    {
+                        MessageBox.Show("Chuyến bay khứ hồi " +i+" này đã hết  ghế !VUi lòng chọn chuyến khác!!!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chuyến bay về  " + i + " chỉ còn " + sogheconlai + " ghế !");
+                    }
+                    return false;
                 }
                 else
                 {
-                    MessageBox.Show("Chuyến bay về  chỉ còn " + sogheconlai + " ghế !");
+                    // chuyển sang xác nhận
+                    return true;
                 }
-                return false;
             }
-            else
-            {
-                // chuyển sang xác nhận
-                return true;
-            }
+            return true;
 
         }
         private void btnApply_Click(object sender, EventArgs e)
@@ -349,8 +409,11 @@ namespace module3
             int row = e.RowIndex;
             if(row >= 1)
             {
-                flightOutbound = listUoutBound[row - 1];
-                MessageBox.Show("id chedule = " + flightOutbound.ID + " from  " + flightOutbound.From + " to " + flightOutbound.To + ",date:  " + flightOutbound.Date + " , price :" + flightOutbound.cabinPrice + ",Flightnumber = " + flightOutbound.flightNumber);
+                if (row - 1 < listUoutBound.Count) {
+                    flightOutbound = listUoutBound[row - 1];
+                    MessageBox.Show("id chedule = " + flightOutbound.ID + " from  " + flightOutbound.From + " to " + flightOutbound.To + ",date:  " + flightOutbound.Date + " , price :" + flightOutbound.cabinPrice + ",Flightnumber = " + flightOutbound.flightNumber);
+                }
+               
             }
 
         }
@@ -360,8 +423,10 @@ namespace module3
             int row = e.RowIndex;
             if (row >= 1)
             {
-                flightReturn = listReturn[row - 1];
-                MessageBox.Show("id chedule = " + flightReturn.ID + " from  " + flightReturn.From + " to " + flightReturn.To + ",date:  " + flightReturn.Date + " , price :" + flightReturn.cabinPrice + ",Flightnumber = " + flightReturn.flightNumber);
+                if (row - 1 < listReturn.Count) {
+                    flightReturn = listReturn[row - 1];
+                    MessageBox.Show("id chedule = " + flightReturn.ID + " from  " + flightReturn.From + " to " + flightReturn.To + ",date:  " + flightReturn.Date + " , price :" + flightReturn.cabinPrice + ",Flightnumber = " + flightReturn.flightNumber);
+                }
             }
 
         }

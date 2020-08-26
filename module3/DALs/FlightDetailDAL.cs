@@ -96,42 +96,7 @@ namespace module3.DALs
             con.Close();
             return list;
         }
-        public int getPassengerFromSchedule(int idSchedule)
-        {
-            int numberPassenger = 0;
-            con.Open();
-            string sql = "select count(*) as 'songuoi' from Tickets where ScheduleID = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("id", idSchedule);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                numberPassenger = Convert.ToInt32(dr["songuoi"]);
-                break;
-            }
-            con.Close();
-            return numberPassenger;
-        }
-        public FlightDetailDTO getFilghDetailFromIDschedule(int idschedule)
-        {
-            FlightDetailDTO flightDetail = null;
-            con.Open();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where Schedules.ID = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("id", idschedule);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                string from = airportsDAL.getNameFromCode(Convert.ToInt32(dr["DepartureAirportID"]));
-                string to = airportsDAL.getNameFromCode(Convert.ToInt32(dr["ArrivalAirportID"]));
-                flightDetail = new FlightDetailDTO(from, to, dr["Date"].ToString().Split(null)[0], dr["Time"].ToString(), dr["FlightNumber"].ToString(), dr["EconomyPrice"].ToString(), 0);
-                flightDetail.ID = dr["ID"].ToString();
-
-                break;
-            }
-            con.Close();
-            return flightDetail;
-        }
+       
         // get flight from A
         public List<FlightDetailDTO> getFlightFrom(int idAirportFrom, string date)
         {
@@ -167,7 +132,7 @@ namespace module3.DALs
         {
             con.Open();
             List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date = @date";
+            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date > @date";
             SqlCommand cmd = new SqlCommand(sql, con);
 
 
@@ -226,7 +191,7 @@ namespace module3.DALs
         {
             con.Open();
             List<FlightDetailDTO> list = new List<FlightDetailDTO>();
-            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date <= DATEADD(day, 3, @date) AND   Schedules.Date >= DATEADD(day, -3, @date)";
+            string sql = "select * from Schedules inner join Routes on Schedules.RouteID = Routes.ID where  Routes.ArrivalAirportID = @to and Schedules.Date > @date";
             SqlCommand cmd = new SqlCommand(sql, con);
 
 
@@ -251,23 +216,7 @@ namespace module3.DALs
             con.Close();
             return list;
         }
-        // get price from id schedule
-        public double getPriceFromIDschedule(int idschedule)
-        {
-            double price = 0;
-            con.Open();
-            string sql = "select * from Schedules where ID = @id ";
-            SqlCommand cmd = new SqlCommand(sql,con);
-            cmd.Parameters.AddWithValue("id", idschedule);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                price = double.Parse(dr["EconomyPrice"].ToString());
-            }
-
-            con.Close();
-            return price;
-        }
+       
         // function get số ghế theo loại cabin đã đặt trong chuyến bay x
         public int getNumberCabintypeSeatbookInschedule(int idSchedule,int idCabintype)
         {

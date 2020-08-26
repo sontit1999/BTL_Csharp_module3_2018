@@ -14,12 +14,16 @@ namespace module3.BULs
         FlightDetailDAL flightDetailDAL = new FlightDetailDAL();
         public List<FlightDetailDTO> getFlight(int idAirportFrom, int idAirportTo, string date)
         {
-            List<FlightDetailDTO> listtong = flightDetailDAL.getFlight(idAirportFrom, idAirportTo, date);   
+            List<FlightDetailDTO> listtong = flightDetailDAL.getFlight(idAirportFrom, idAirportTo, date);
+            List<FlightDetailDTO> listnoi = getTuyenNoi(idAirportFrom, idAirportTo, date);
+            listtong.AddRange(listnoi);
             return listtong;
         }
         public List<FlightDetailDTO> getFlightThreeDays(int idAirportFrom, int idAirportTo, string date)
         {
             List<FlightDetailDTO> listtong = flightDetailDAL.getFlightThreeDays(idAirportFrom, idAirportTo, date);
+            List<FlightDetailDTO> listnoi = getTuyenNoiTHreeDay(idAirportFrom, idAirportTo, date);
+            listtong.AddRange(listnoi);
             return listtong;
            
         }
@@ -29,16 +33,7 @@ namespace module3.BULs
            
             return flightDetailDAL.getAllFlight();
         }
-        public int getPassengerFromSchedule(int idSchedule)
-        {
-            
-            return flightDetailDAL.getPassengerFromSchedule(idSchedule);
-        }
-        public FlightDetailDTO getFilghDetailFromIDschedule(int idschedule)
-        {         
-            return flightDetailDAL.getFilghDetailFromIDschedule(idschedule);
-        }
-       
+        
         public List<FlightDetailDTO> getTuyenNoi(int idFrom,int idTo, string date) 
         {
             List<FlightDetailDTO> listTong = new List<FlightDetailDTO>();
@@ -88,11 +83,7 @@ namespace module3.BULs
             }
             return listTong;
         }
-        public double getPriceFromIDschedule(int idschedule)
-        {
-            return flightDetailDAL.getPriceFromIDschedule(idschedule);
-
-        }
+      
         public void displayFlightToDGV(List<FlightDetailDTO> list,DataGridView dgv,int idCbinprice)
         {
             CaculatePriceFlightByCabintype(list, idCbinprice);
