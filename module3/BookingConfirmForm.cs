@@ -230,11 +230,15 @@ namespace module3
         {
             if (indexPassengerRemove >= 0 && listPassenger.Count >=1)
             {
-                DialogResult result = MessageBox.Show("Xóa passenger!!", "Bạn có chắc muốn xóa " + listPassenger[indexPassengerRemove].FirstName + " hay không?", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.OK) {
-                    listPassenger.RemoveAt(indexPassengerRemove);
-                    hienthiPassenger();
+                if (indexPassengerRemove < listPassenger.Count) {
+                    DialogResult result = MessageBox.Show("Xóa passenger!!", "Bạn có chắc muốn xóa " + listPassenger[indexPassengerRemove].FirstName + " hay không?", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        listPassenger.RemoveAt(indexPassengerRemove);
+                        hienthiPassenger();
+                    }
                 }
+               
                 
             }
            
@@ -350,6 +354,25 @@ namespace module3
         private void cbPassportCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void txtLastname_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtLastname.Text, "[^a-zA-Z ]"))
+            {
+                MessageBox.Show("Please enter only character.");
+                txtLastname.Text = txtLastname.Text.Remove(txtLastname.Text.Length - 1);
+            }
+            
+        }
+
+        private void txtFirstname_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtFirstname.Text, "[^a-zA-Z ]"))
+            {
+                MessageBox.Show("Please enter only character.");
+                txtFirstname.Text = txtFirstname.Text.Remove(txtFirstname.Text.Length - 1);
+            }
         }
     }
 }

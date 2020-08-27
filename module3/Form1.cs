@@ -411,7 +411,7 @@ namespace module3
             {
                 if (row - 1 < listUoutBound.Count) {
                     flightOutbound = listUoutBound[row - 1];
-                    MessageBox.Show("id chedule = " + flightOutbound.ID + " from  " + flightOutbound.From + " to " + flightOutbound.To + ",date:  " + flightOutbound.Date + " , price :" + flightOutbound.cabinPrice + ",Flightnumber = " + flightOutbound.flightNumber);
+                    //MessageBox.Show("id chedule = " + flightOutbound.ID + " from  " + flightOutbound.From + " to " + flightOutbound.To + ",date:  " + flightOutbound.Date + " , price :" + flightOutbound.cabinPrice + ",Flightnumber = " + flightOutbound.flightNumber);
                 }
                
             }
@@ -425,7 +425,7 @@ namespace module3
             {
                 if (row - 1 < listReturn.Count) {
                     flightReturn = listReturn[row - 1];
-                    MessageBox.Show("id chedule = " + flightReturn.ID + " from  " + flightReturn.From + " to " + flightReturn.To + ",date:  " + flightReturn.Date + " , price :" + flightReturn.cabinPrice + ",Flightnumber = " + flightReturn.flightNumber);
+                   // MessageBox.Show("id chedule = " + flightReturn.ID + " from  " + flightReturn.From + " to " + flightReturn.To + ",date:  " + flightReturn.Date + " , price :" + flightReturn.cabinPrice + ",Flightnumber = " + flightReturn.flightNumber);
                 }
             }
 
@@ -443,7 +443,12 @@ namespace module3
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn thoát hay không ?", " Thoát ứng dụng ", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                Close();
+            }
+            
         }
 
         private void txtNumberPassenger_TextChanged(object sender, EventArgs e)

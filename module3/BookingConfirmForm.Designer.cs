@@ -321,6 +321,7 @@
             this.txtFirstname.Name = "txtFirstname";
             this.txtFirstname.Size = new System.Drawing.Size(131, 20);
             this.txtFirstname.TabIndex = 24;
+            this.txtFirstname.TextChanged += new System.EventHandler(this.txtFirstname_TextChanged);
             // 
             // txtLastname
             // 
@@ -328,6 +329,7 @@
             this.txtLastname.Name = "txtLastname";
             this.txtLastname.Size = new System.Drawing.Size(131, 20);
             this.txtLastname.TabIndex = 26;
+            this.txtLastname.TextChanged += new System.EventHandler(this.txtLastname_TextChanged);
             // 
             // label25
             // 
